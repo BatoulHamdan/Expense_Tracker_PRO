@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const register = async (req, res) => {
   const usersModel = mongoose.model("users");
@@ -9,8 +10,7 @@ const register = async (req, res) => {
   if (!name) throw "Name must be provided!";
   if (!email) throw "Email must be provided!";
   if (!password) throw "Password must be provided!";
-  if (password.length < 6)
-    throw "Password must be at least 6 characters long!";
+  if (password.length < 6) throw "Password must be at least 6 characters long!";
   if (confirm_password !== password)
     throw "Password and confirm password does not match!";
 
@@ -20,10 +20,13 @@ const register = async (req, res) => {
 
   if (getDuplicateEmail) throw "This email already exists!";
 
+
+  const hashedPassword = await bcrypt.hash(password, 12)
+
   await usersModel.create({
     name: name,
     email: email,
-    password: password,
+    password: hashedPassword,
     balance: balance,
   });
 
