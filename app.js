@@ -16,6 +16,9 @@ mongoose
     console.log("Connection to mongoose failed!");
   });
 
+//Models
+require("./Models/usersModel");
+
 app.use(express.json());
 
 //Routes
