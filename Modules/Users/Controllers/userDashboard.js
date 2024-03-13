@@ -9,7 +9,7 @@ const userDashboard = async (req, res) => {
     .findOne({
       _id: req.user._id,
     })
-    .select("-password");
+    .select("-_id -password");
   //.select("name email balance");
 
   res.status(200).json({
