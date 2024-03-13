@@ -21,12 +21,12 @@ mongoose
 //Models
 require("./Models/usersModel");
 
-app.use(express.json());
+app.use(express.json()); //middleware that allowed us to access json data from payload
 
 //Routes
 app.use("/api/users", usersRoutes);
 
-app.use(errorHandler);
+app.use(errorHandler); //middleware
 
 app.listen(8000, () => {
   console.log("Server started successfully!");
