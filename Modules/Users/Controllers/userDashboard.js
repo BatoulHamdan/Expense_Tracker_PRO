@@ -1,8 +1,20 @@
-const userDashboard = (req, res) => {
+const mongoose = require("mongoose");
+
+const userDashboard = async (req, res) => {
+  const usersModel = mongoose.model("users");
+
   console.log(req.user);
+
+  const getUser = await usersModel
+    .findOne({
+      _id: req.user._id,
+    })
+    .select("-password");
+  //.select("name email balance");
+
   res.status(200).json({
     status: "success",
-    message: "User Dashboard!",
+    data: getUser,
   });
 };
 
