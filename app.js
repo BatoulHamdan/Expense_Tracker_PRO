@@ -29,6 +29,13 @@ app.use(express.json()); //middleware that allowed us to access json data from p
 app.use("/api/users", usersRoutes);
 app.use("/api/transactions", transactionsRoutes);
 
+app.all("*", (req, res, next) => {
+  res.status(404).json({
+    status: "failed",
+    message: "Route not found!",
+  });
+});
+
 app.use(errorHandler); //middleware
 
 app.listen(8000, () => {
