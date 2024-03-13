@@ -1,8 +1,9 @@
 const userDashboard = (req, res) => {
-    res.status(200).json({
-        status: "success",
-        message: "User Dashboard!",
-      });
+  console.log(req.user);
+  res.status(200).json({
+    status: "success",
+    message: "User Dashboard!",
+  });
 };
 
 module.exports = userDashboard;
