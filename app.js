@@ -4,6 +4,8 @@ const express = require("express");
 const errorHandler = require("./Handlers/errorHandler");
 const mongoose = require("mongoose");
 
+const usersRoutes = require("./Modules/Users/usersRoute.js");
+
 require("dotenv").config();
 const app = express();
 
@@ -22,6 +24,7 @@ require("./Models/usersModel");
 app.use(express.json());
 
 //Routes
+app.use("/api/users", usersRoutes);
 
 app.use(errorHandler);
 
