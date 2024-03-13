@@ -1,3 +1,5 @@
+//to be updated
+
 const mongoose = require("mongoose");
 const validator = require("validator");
 
@@ -5,6 +7,8 @@ const deleteTransaction = async (req, res) => {
   const transactionModel = mongoose.model("transactions");
 
   const { transaction_id } = req.body;
+
+  if (!transaction_id) throw "Transaction id is required!";
 
   if (!validator.isMongoId(transaction_id.toString()))
     throw "Please provide a valid id!";
